@@ -1,14 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from 'react-dom';
 import './index.css';
-import Routte from './component/Route';
+import Routte from './component/Routers';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 
+const root = document.getElementById('root');
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <Routte/>
+    <BrowserRouter>
+        <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
