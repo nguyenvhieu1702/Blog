@@ -1,8 +1,11 @@
-import React from "react";
+
 import PostCard from "../PostCard";
 import styles from './PostList.module.css'
+import React, { useState, useEffect } from 'react';
+
 
 const fakeData = [
+  
     {
         id: 1,
         title: "Javascript",
@@ -31,9 +34,19 @@ const fakeData = [
 ]
 
 const PostList = () => {
+  const [blog, setBlog] = useState([]);
+  useEffect(() => {
+    fetch('http://localhost:8080/getPost')
+      .then(response => response.json())
+      .then(data => {
+        setBlog(data);
+      })
+      .catch(error => console.error('Error:', error));
+  }, []);
+  console.log(blog)
   return (
     <div className={styles.container}>
-      {fakeData.map((item) => (
+      {blog?.map((item) => (
         <PostCard key={item.id} data={item}/>
       ))}
     </div>

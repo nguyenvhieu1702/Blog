@@ -6,6 +6,7 @@ import { FaRegUser, FaRegCommentAlt } from "react-icons/fa";
 
 const PostCard = ({ data }) => {
   const { title = "", img = "", time = "", author = "", content = "" } = data;
+  console.log(data)
 
   return (
     <div className={styles.container}>
