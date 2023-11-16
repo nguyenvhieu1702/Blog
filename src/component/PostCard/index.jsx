@@ -5,18 +5,19 @@ import { IoMdTime } from "react-icons/io";
 import { FaRegUser, FaRegCommentAlt } from "react-icons/fa";
 
 const PostCard = ({ data }) => {
+  console.log("PostCard  "+ data )
   const {
     title = "",
     img = "",
     time = "",
     author = "",
     content = "",
-    id = "",
+    postId = "",
   } = data;
   console.log(data);
 
   return (
-    <Link to={`/post/${id}`} style={{ textDecoration: "none", color: "inherit" }}>
+    <Link to={`/post/${postId}`} style={{ textDecoration: "none", color: "inherit" }}>
       <div className={styles.container}>
         <h1>{title}</h1>
         <div className={styles.sub_info_wrapper}>

@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../component/Navbar";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import NavbarCreate from "../component/NavBarCreate";
 
 const styles = {
   container: {
@@ -31,23 +31,22 @@ const styles = {
 
 const PostDetail = () => {
   const { id } = useParams();
-  const [data, setData] = useState({
-    img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/JavaScript-logo.png/800px-JavaScript-logo.png',
-    author: 'Nguyễn Văn Hiếu',
-    time: '13/11/2023',
-    content: "Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor  ipsum dolor "
-  })
+  const [data, setData] = useState({});
 
   useEffect(() => {
-    //call api
-  }, [])
+    fetch(`http://localhost:8080/getPost/${id}`)
+      .then(response => response.json())
+      .then(data => {
+        setData(data);
+      })
+      .catch(error => console.error('Error:', error));
+  }, []);
 
   return (
     <main>
-      <Navbar />
+      <NavbarCreate />
 
       <div style={styles.container}>
-        <h1 style={styles.title}>Javascript</h1>
         <div style={styles.imgWrapper}>
           <img
             style={styles.img}
@@ -58,7 +57,7 @@ const PostDetail = () => {
         <h2>Author: {data.author}</h2>
         <h2>Created at: {data.time}</h2>
         <p style={{ padding: "0 100px" }}>
-          <span style={{ fontWeight: "bold" }}>Content</span>: {data.content} 
+          <div dangerouslySetInnerHTML={{ __html: data.body }} />
         </p>
       </div>
     </main>
