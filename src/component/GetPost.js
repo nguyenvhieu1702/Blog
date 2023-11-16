@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Card, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const GetPost = () => {
   const [blog, setBlog] = useState([]);
@@ -10,25 +8,21 @@ const GetPost = () => {
       .then(response => response.json())
       .then(data => {
         setBlog(data);
+        const textElement = document.getElementById('text');
+
+        const postHTMLArray = data.map(post => `<div><h3>${post.title}</h3><p>${post.body}</p></div>`);
+
+        textElement.innerHTML = postHTMLArray.join('');
+        console.log(data);
       })
       .catch(error => console.error('Error:', error));
   }, []);
 
   return (
-    <Container className="mt-4">
-      <h1 className="mb-4">My Blog</h1>
-      <div id="text">
-        {blog.map(post => (
-          <Card key={post.id} className="mb-4">
-            <Card.Body>
-              <Card.Title>{post.title}</Card.Title>
-              <Card.Text>{post.body}</Card.Text>
-              <Button variant="primary">Read More</Button>
-            </Card.Body>
-          </Card>
-        ))}
-      </div>
-    </Container>
+    <div className="App">
+      
+      <div id='text'></div>
+    </div>
   );
 };
 

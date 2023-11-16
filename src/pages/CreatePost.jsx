@@ -8,6 +8,7 @@ const CreatePost = () => {
   const [body, setBody] = useState('');
   const [img, setImg] = useState('');
 
+
   const handleEditorChange = (content, editor) => {
     setBody(content);
   };
@@ -30,10 +31,12 @@ const CreatePost = () => {
   }
 
   const handleSubmit = () => {
+
     fetch('http://localhost:8080/createPost', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
       },
       body: JSON.stringify({ title, body, content, img })
     })

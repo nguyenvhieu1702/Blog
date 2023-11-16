@@ -9,6 +9,7 @@ import HomePage from '../pages/Home';
 import CreatePost from '../pages/CreatePost';
 import Login from '../pages/Login';
 import PostDetail from '../pages/PostDetail';
+import Register from '../pages/Register';
 
 
 const Routers = () => {
@@ -22,6 +23,7 @@ const Routers = () => {
         <Route path="/BeginPost" element={<BeginPost />} />
         <Route path="/BeginPost2" element={<BeginPost2 />} />
         <Route path="/GetPost" element={<GetPost />} />
+        <Route path="/Register" element={<Register />} />
       </Routes>
    
   );

@@ -64,7 +64,7 @@ const Navbar = () => {
   <div className={styles.auth_wrapper}>
     <ul className={styles.action_list}>
       <li>
-        <a href="/" className={styles.link_style}>
+        <a href="/Register" className={styles.link_style}>
           Đăng ký
         </a>
       </li>
