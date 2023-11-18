@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import NavbarCreate from '../component/NavBarCreate';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [body, setBody] = useState('');
   const [img, setImg] = useState('');
+  const [author] = useState(localStorage.getItem('author'))
+
 
   const handleEditorChange = (content, editor) => {
     setBody(content);
@@ -30,17 +33,20 @@ const CreatePost = () => {
   }
 
   const handleSubmit = () => {
+
     fetch('http://localhost:8080/createPost', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
       },
-      body: JSON.stringify({ title, body, content, img })
+      body: JSON.stringify({ title, body, content, img, author })
     })
       .then(response => response.json())
       .then(data => {
         // Xử lý kết quả từ máy chủ nếu cần
         console.log(data);
+
       })
       .catch(error => {
         console.error('Error:', error);
@@ -51,26 +57,37 @@ const CreatePost = () => {
     <div>
       <NavbarCreate />
 
-      <label>Title:</label>
-      <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-      <label>Content:</label>
-      <input type="text" value={content} onChange={(e) => setContent(e.target.value)} />
-      <Editor
-        apiKey="7b7e7xrj4gtd69lr1pvgfc9w5x24dyvqvngpawc8ndzy95q5"
-        value={body}
-        onEditorChange={handleEditorChange}
-      />
-      <div>
-        <label htmlFor="img">Chọn ảnh:</label>
-        <input
-          type="file"
-          id="img"
-          accept="image/*"
-          onChange={handleImgChange}
-        />
-      </div>
+  
+      <div className="container">
+      <div className="mb-3">
+          <label className="form-label">Title:</label>
+          <input type="text" className="form-control" value={title} onChange={(e) => setTitle(e.target.value)} />
+        </div>
 
-      <button onClick={handleSubmit}>Submit</button>
+        <div className="mb-3">
+          <label className="form-label">Content:</label>
+          <input type="text" className="form-control" value={content} onChange={(e) => setContent(e.target.value)} />
+        </div>
+        
+        <Editor
+          apiKey="7b7e7xrj4gtd69lr1pvgfc9w5x24dyvqvngpawc8ndzy95q5"
+          value={body}
+          onEditorChange={handleEditorChange}
+        />
+  
+        <div className="mb-3">
+          <label htmlFor="img" className="form-label">Chọn ảnh:</label>
+          <input
+            type="file"
+            className="form-control"
+            id="img"
+            accept="image/*"
+            onChange={handleImgChange}
+          />
+        </div>
+  
+        <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+      </div>
     </div>
   );
 };

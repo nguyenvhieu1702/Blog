@@ -8,20 +8,20 @@ const PostCard = ({ data }) => {
   const {
     title = "",
     img = "",
-    time = "",
+    createAt = "",
     author = "",
     content = "",
-    id = "",
+    postId = "",
   } = data;
   console.log(data);
 
   return (
-    <Link to={`/post/${id}`} style={{ textDecoration: "none", color: "inherit" }}>
+    <Link to={`/post/${postId}`} style={{ textDecoration: "none", color: "inherit" }}>
       <div className={styles.container}>
         <h1>{title}</h1>
         <div className={styles.sub_info_wrapper}>
           <p className={styles.center}>
-            <IoMdTime /> {time} by
+            <IoMdTime /> {createAt} 
           </p>
           <p className={styles.center}>
             <a href="/" className={styles.link_decord}>

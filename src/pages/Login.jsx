@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import NavbarCreate from "../component/NavBarCreate";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -41,7 +42,7 @@ const Login = () => {
         navigate('/');
       })
       .catch((error) => console.error("Error:", error));
-
+      localStorage.setItem('author',username)
     console.log("Tên người dùng:", username);
     console.log("Mật khẩu:", password);
   };
@@ -53,35 +54,42 @@ const Login = () => {
 
   return (
     <div className="login-container">
-
-        <>
-          <h2>Đăng nhập</h2>
-          <div className="input-container">
-            <label>Tên đăng nhập</label>
-            <input
-              type="text"
-              className="form-input"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div className="input-container">
-            <label>Mật khẩu</label>
-            <input
-              type="password"
-              className="form-input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
-          <div className="button-container">
-            <button onClick={handleUserSubmit} className="login-button">
-              Đăng nhập
-            </button>
-          </div>
-        </>
+      <NavbarCreate />
+      <div className="login-form container">
+        <h2 className="mb-4">Đăng nhập</h2>
+        <div className="mb-3">
+          <label htmlFor="username" className="form-label">
+            Tên đăng nhập
+          </label>
+          <input
+            type="text"
+            id="username"
+            className="form-control"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="password" className="form-label">
+            Mật khẩu
+          </label>
+          <input
+            type="password"
+            id="password"
+            className="form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="button-container">
+          <button onClick={handleUserSubmit} className="btn btn-primary">
+            Đăng nhập
+          </button>
+        </div>
+      </div>
     </div>
   );
 };
+
 
 export default Login;
