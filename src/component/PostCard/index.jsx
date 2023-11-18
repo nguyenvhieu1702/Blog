@@ -5,11 +5,10 @@ import { IoMdTime } from "react-icons/io";
 import { FaRegUser, FaRegCommentAlt } from "react-icons/fa";
 
 const PostCard = ({ data }) => {
-  console.log("PostCard  "+ data )
   const {
     title = "",
     img = "",
-    time = "",
+    createAt = "",
     author = "",
     content = "",
     postId = "",
@@ -22,7 +21,7 @@ const PostCard = ({ data }) => {
         <h1>{title}</h1>
         <div className={styles.sub_info_wrapper}>
           <p className={styles.center}>
-            <IoMdTime /> {time} by
+            <IoMdTime /> {createAt} 
           </p>
           <p className={styles.center}>
             <a href="/" className={styles.link_decord}>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import NavbarCreate from '../component/NavBarCreate';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -30,38 +31,41 @@ const Register = () => {
   return (
     <div>
       <NavbarCreate />
-      <div className="registration-form">
+      <div className="container registration-form">
         <h2>Đăng ký</h2>
         <form>
-          <div className="form-group">
-            <label htmlFor="name">Tên người dùng:</label>
+          <div className="mb-3">
+            <label htmlFor="name" className="form-label">Tên người dùng:</label>
             <input
               type="text"
+              className="form-control"
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="password">Mật khẩu:</label>
+          <div className="mb-3">
+            <label htmlFor="password" className="form-label">Mật khẩu:</label>
             <input
               type="password"
+              className="form-control"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
+          <div className="mb-3">
+            <label htmlFor="email" className="form-label">Email:</label>
             <input
               type="email"
+              className="form-control"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           {/* Roles không thay đổi nên không cần input */}
-          <button type="button" onClick={handleSubmit}>
+          <button type="button" className="btn btn-primary" onClick={handleSubmit}>
             Đăng ký
           </button>
         </form>

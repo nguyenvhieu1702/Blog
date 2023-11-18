@@ -10,7 +10,6 @@ const PostList = () => {
     fetch('http://localhost:8080/getPost')
       .then(response => response.json())
       .then(data => {
-        console.log('getpost'+data)
         setBlog(data);
       })
       .catch(error => console.error('Error:', error));
@@ -21,7 +20,9 @@ const PostList = () => {
       {blog?.map((item) => (
         <PostCard key={item.id} data={item}/>
       ))}
+
     </div>
+    
   );
 };
 

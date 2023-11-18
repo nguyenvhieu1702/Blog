@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
+import NavbarCreate from "../component/NavBarCreate";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -41,7 +42,7 @@ const Login = () => {
         navigate('/');
       })
       .catch((error) => console.error("Error:", error));
-
+      localStorage.setItem('author',username)
     console.log("Tên người dùng:", username);
     console.log("Mật khẩu:", password);
   };
@@ -53,6 +54,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
+      <NavbarCreate />
       <div className="login-form container">
         <h2 className="mb-4">Đăng nhập</h2>
         <div className="mb-3">

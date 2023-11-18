@@ -37,6 +37,7 @@ const PostDetail = () => {
     fetch(`http://localhost:8080/getPost/${id}`)
       .then(response => response.json())
       .then(data => {
+        console.log(data)
         setData(data);
       })
       .catch(error => console.error('Error:', error));
@@ -55,7 +56,7 @@ const PostDetail = () => {
           />
         </div>
         <h2>Author: {data.author}</h2>
-        <h2>Created at: {data.time}</h2>
+        <h2>Created at: {data.createAt}</h2>
         <p style={{ padding: "0 100px" }}>
           <div dangerouslySetInnerHTML={{ __html: data.body }} />
         </p>

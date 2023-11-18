@@ -10,6 +10,7 @@ import CreatePost from '../pages/CreatePost';
 import Login from '../pages/Login';
 import PostDetail from '../pages/PostDetail';
 import Register from '../pages/Register';
+import Manager from '../pages/Manager';
 
 
 const Routers = () => {
@@ -24,6 +25,7 @@ const Routers = () => {
         <Route path="/BeginPost2" element={<BeginPost2 />} />
         <Route path="/GetPost" element={<GetPost />} />
         <Route path="/Register" element={<Register />} />
+        <Route path="/Manager" element={<Manager />} />
       </Routes>
    
   );
