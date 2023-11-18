@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "../component/Navbar";
 import { useState, useEffect } from "react";
 import NavbarCreate from "../component/NavBarCreate";
 
