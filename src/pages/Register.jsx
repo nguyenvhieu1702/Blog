@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import NavbarCreate from '../component/NavBarCreate';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate } from "react-router-dom";
+
 
 const Register = () => {
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [roles, setRoles] = useState('ROLE_USER'); // Giá trị mặc định là 'ROLE_USER'
+  const [roles] = useState('ROLE_USER'); // Giá trị mặc định là 'ROLE_USER'
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     // Kiểm tra xem có thể thêm các kiểm tra hợp lý khác tại đây trước khi gửi yêu cầu
@@ -22,6 +25,7 @@ const Register = () => {
       .then(data => {
         // Xử lý kết quả từ máy chủ nếu cần
         console.log(data);
+        navigate("/");
       })
       .catch(error => {
         console.error('Error:', error);
@@ -64,7 +68,6 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          {/* Roles không thay đổi nên không cần input */}
           <button type="button" className="btn btn-primary" onClick={handleSubmit}>
             Đăng ký
           </button>

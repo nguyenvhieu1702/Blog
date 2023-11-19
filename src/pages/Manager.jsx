@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
+import { Button } from "react-bootstrap"; // Import React Bootstrap components
+import NavbarCreate from "../component/NavBarCreate";
 
 function Manager() {
   const [posts, setPosts] = useState([]);
@@ -41,16 +44,24 @@ function Manager() {
 
   return (
     <div>
-      <ul>
+      <NavbarCreate />
+    <div className="container mt-5">
+      <ul className="list-group">
         {posts.map((post) => (
-          <li key={post.postId}>
-            <p>Author: {post.author}</p>
-            <p>Title: {post.title}</p>
-            <button onClick={() => handleDeletePost(post.postId)}>Delete</button>
+          <li key={post.postId} className="list-group-item">
+            <p className="mb-1">Author: {post.author}</p>
+            <p className="mb-1">Title: {post.title}</p>
+            <Button
+              variant="danger"
+              onClick={() => handleDeletePost(post.postId)}
+            >
+              Delete
+            </Button>
             <hr />
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 }

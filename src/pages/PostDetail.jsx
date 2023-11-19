@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import NavbarCreate from "../component/NavBarCreate";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const styles = {
   container: {

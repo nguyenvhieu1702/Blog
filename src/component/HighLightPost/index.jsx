@@ -1,40 +1,46 @@
-import { useEffect, useState } from "react";
-import styles from "./HighLightPost.module.css";
-import { Link } from "react-router-dom";
-
-import { POST } from "../../data/postList";
+import React, { useEffect, useState } from 'react';
+import styles from './HighLightPost.module.css';
+import { Link } from 'react-router-dom';
 
 const HighLightPost = () => {
-  const [highlightPost, sethighLightPost] = useState(POST);
+  const [highlightPost, setHighLightPost] = useState([]);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetch('http://localhost:8080/getPost')
+      .then(response => response.json())
+      .then(data => {
+        const currentPosts = [...highlightPost, ...data];
+        const limitedPosts = currentPosts.slice(-4); // Giữ lại tối đa 4 bài viết
+        setHighLightPost(limitedPosts);
+      })
+      .catch(error => console.error('Error:', error));
+  }, []);
 
   return (
     <div className={styles.container}>
       <div className={styles.highlightTitleWrapper}>
-        <h1 className={styles.highlightTitle}>Bài viết nổi bật</h1>
+        <h1 className={styles.highlightTitle}>Bài viết mới nhất</h1>
       </div>
 
       <div>
-        {highlightPost.map((item) => {
-          return (
-            <>
-              <HighLightItem data={item} key={item.id} />
-              <hr />
-            </>
-          );
-        })}
+        {highlightPost.map(item => (
+          <React.Fragment key={item.id}>
+            <HighLightItem data={item} />
+            <hr />
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );
 };
 
 const HighLightItem = ({ data }) => {
-  const { title = "", img = "" } = data;
+  const { title = '', img = '', postId } = data;
   return (
     <Link
+      to={`/post/${postId}`}
       className={styles.postWrapper}
-      style={{ textDecoration: "none", color: "inherit" }}
+      style={{ textDecoration: 'none', color: 'inherit' }}
     >
       <div className={styles.imgWrapper}>
         <img src={img} alt="blog" />
