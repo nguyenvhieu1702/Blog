@@ -4,7 +4,7 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
   const [token, setToken] = useState(localStorage.getItem("accessToken"));
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState();
 
   const handleLogout = () => {
     // Xóa token khỏi localStorage
@@ -26,7 +26,8 @@ const Navbar = () => {
     };
 
     fetchAllPosts();
-  }, []); // Chạy một lần khi component được mount
+  }, []);
+
 
   const handleSearch = () => {
     const results = searchResults.filter((item) =>
@@ -62,22 +63,24 @@ const Navbar = () => {
         </ul>
       </div>
       <div className={styles.search_box}>
-        <input
+      <input
           type="text"
           className={styles.search_input}
           placeholder="Tìm kiếm..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-      </div>
       <div className={styles.search_results}>
-        {searchQuery && searchResults.length > 0 && (
+        {searchQuery.length > 0 && (
           <ul>
             {searchResults.map((result, index) => (
               <li key={index}>{result.title}</li>
             ))}
           </ul>
         )}
+      
+        
+      </div>
       </div>
       {token ? (
         <div className={styles.auth_wrapper}>
