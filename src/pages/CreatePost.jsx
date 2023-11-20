@@ -2,38 +2,39 @@ import React, { useState } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import NavbarCreate from '../component/NavBarCreate';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Alert } from 'reactstrap';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [body, setBody] = useState('');
   const [img, setImg] = useState('');
-  const [author] = useState(localStorage.getItem('author'))
-
+  const [author] = useState(localStorage.getItem('author'));
+  const [successAlert, setSuccessAlert] = useState(false);
 
   const handleEditorChange = (content, editor) => {
     setBody(content);
   };
+
   const handleImgChange = (event) => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'co3m8lyu'); 
+    formData.append('upload_preset', 'co3m8lyu');
 
     fetch('https://api.cloudinary.com/v1_1/dlr3ajyow/image/upload', {
       method: 'POST',
       body: formData,
     })
-    .then(response => response.json())
-    .then(data => {
-      alert("Upload thanh cong")
-      setImg(data.secure_url); 
-    })
-    .catch(error => console.error('Error:', error));
-  }
+      .then(response => response.json())
+      .then(data => {
+        setSuccessAlert(true);
+        setImg(data.secure_url);
+      })
+      .catch(error => console.error('Error:', error));
+  };
 
   const handleSubmit = () => {
-
     fetch('http://localhost:8080/createPost', {
       method: 'POST',
       headers: {
@@ -46,7 +47,6 @@ const CreatePost = () => {
       .then(data => {
         // Xử lý kết quả từ máy chủ nếu cần
         console.log(data);
-
       })
       .catch(error => {
         console.error('Error:', error);
@@ -56,10 +56,14 @@ const CreatePost = () => {
   return (
     <div>
       <NavbarCreate />
-
-  
       <div className="container">
-      <div className="mb-3">
+        {successAlert && (
+          <Alert color="success">
+            This is a success alert — check it out!
+          </Alert>
+        )}
+
+        <div className="mb-3">
           <label className="form-label">Title:</label>
           <input type="text" className="form-control" value={title} onChange={(e) => setTitle(e.target.value)} />
         </div>
@@ -68,13 +72,13 @@ const CreatePost = () => {
           <label className="form-label">Content:</label>
           <input type="text" className="form-control" value={content} onChange={(e) => setContent(e.target.value)} />
         </div>
-        
+
         <Editor
           apiKey="7b7e7xrj4gtd69lr1pvgfc9w5x24dyvqvngpawc8ndzy95q5"
           value={body}
           onEditorChange={handleEditorChange}
         />
-  
+
         <div className="mb-3">
           <label htmlFor="img" className="form-label">Chọn ảnh:</label>
           <input
@@ -85,7 +89,7 @@ const CreatePost = () => {
             onChange={handleImgChange}
           />
         </div>
-  
+
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
       </div>
     </div>
