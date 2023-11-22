@@ -8,7 +8,7 @@ const Footer = () => {
         <div className={styles.footer_section}>
           <h3>Thông tin liên hệ</h3>
           <p>Địa chỉ: 123 Đường ABC, Thành phố XYZ</p>
-          <p>Email: 20h1120126@ut.edu.vn</p>
+          <p>Email: 20H1120126.ut.edu.vn</p>
         </div>
 
         <div className={styles.footer_section}>

@@ -11,15 +11,6 @@ function UserManager() {
     }, []);
 
     const loadDataUser = () => {
-        // const myHeaders = new Headers();
-        // myHeaders.append("Authorization", "Bearer " + localStorage.getItem("accessToken"));
-
-        // const requestOptions = {
-        //     method: 'GET',
-        //     headers: myHeaders,
-        //     redirect: 'follow'
-        // };
-
         fetch("http://localhost:8080/getUser")
             .then(response => response.json())
             .then(result => {

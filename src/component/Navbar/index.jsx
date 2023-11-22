@@ -74,7 +74,6 @@ const Navbar = () => {
           <ul>
             {searchResults.map((result, index) => (
               <li key={index}>
-                {/* Sử dụng thẻ Link để điều hướng đến trang chi tiết */}
                 <Link to={`/post/${result.postId}`} className={styles.link_style_result}>
                   <img src={result.img} alt={result.title} />
                   {result.title}
