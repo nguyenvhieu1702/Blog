@@ -1,0 +1,40 @@
+.container {
+    height: fit-content;
+    padding: 5px 20px;
+    background-color: #2e404f;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 258px;
+    
+    
+}
+
+.action_wrapper {
+    padding-top: 10px;
+}
+
+.action_list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.link_style {
+    text-decoration: none;
+    color: white; 
+}
+
+.link_style:hover{
+    color: yellow; 
+    transition: 0.5s;
+}
+
+.auth_wrapper{
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px
+}

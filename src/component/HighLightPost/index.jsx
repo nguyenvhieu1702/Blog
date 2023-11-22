@@ -19,7 +19,7 @@ const HighLightPost = () => {
   return (
     <div className={styles.container}>
       <div className={styles.highlightTitleWrapper}>
-        <h1 className={styles.highlightTitle}>Bài viết mới nhất</h1>
+        <h1 className={styles.highlightTitle}>Bài viết mới </h1>
       </div>
 
       <div>

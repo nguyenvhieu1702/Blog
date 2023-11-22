@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../component/Navbar'
 import PostList from '../component/PostList'
 import HighLightPost from '../component/HighLightPost';
+import Footer from '../component/Footer';
 
 const styles = {
   row: {
@@ -20,6 +21,7 @@ const HomePage = () => {
           <PostList />
           <HighLightPost />
         </div>
+        <Footer/>
     </main>
   )
 }

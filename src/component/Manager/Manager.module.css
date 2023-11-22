@@ -1,0 +1,81 @@
+.Container {
+    display: flex;
+}
+
+.sideBar {
+    position: fixed;
+    height: 100%;
+    width: 210px;
+    padding: 10px;
+    background-color: #2e404f;
+    color: white;
+    
+}
+.funcSidebar{
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin-top: 5px;
+    width: 195px;
+    background-color: #2e404f;
+    color: white;
+    border: none;
+}
+
+.funcLogout{
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    margin-top: 5px;
+    width: 195px;
+    background-color: #2e404f;
+    color: white;
+    border: none;
+}
+.funcLogout:hover{
+    background-color: #bcb720; 
+    border-radius: 5px;
+    transition: 0.2s;
+}
+.selectedButton {
+    background-color: #bcb720; 
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+
+.element{
+    margin: 2px ;
+}
+
+.iconUser{
+    margin-left: 15px;
+    margin-right: 5px;
+}
+.iconPost{
+    margin-left: 15px;
+    margin-right: 9px;
+}
+.contentInner {
+    margin-left: 225px;
+    width: 1300px;
+    align-items: center;
+}
+
+
+.titlesideBar {
+    margin-top: 20px;
+    font-size: 18px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+
+}
+.subtitlesideBar{
+    margin-top: 20px;
+    font-size: 15px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+

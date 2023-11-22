@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import NavbarCreate from "../component/NavBarCreate";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Footer from '../component/Footer';
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -84,6 +85,7 @@ const Login = () => {
           </button>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };

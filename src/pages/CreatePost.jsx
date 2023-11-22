@@ -3,6 +3,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import NavbarCreate from '../component/NavBarCreate';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Alert } from 'reactstrap';
+import Footer from '../component/Footer';
 
 const CreatePost = () => {
   const [title, setTitle] = useState('');
@@ -59,7 +60,7 @@ const CreatePost = () => {
       <div className="container">
         {successAlert && (
           <Alert color="success">
-            This is a success alert — check it out!
+            Đăng ảnh thành công
           </Alert>
         )}
 
@@ -92,6 +93,7 @@ const CreatePost = () => {
 
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
       </div>
+      <Footer />
     </div>
   );
 };

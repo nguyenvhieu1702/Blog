@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import NavbarCreate from '../component/NavBarCreate';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from '../component/Footer';
 import { useNavigate } from "react-router-dom";
 
 
@@ -73,6 +74,7 @@ const Register = () => {
           </button>
         </form>
       </div>
+      <Footer/>
     </div>
   );
 };

@@ -1,69 +1,85 @@
-import React, { useState, useEffect } from "react";
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-import { Button } from "react-bootstrap"; // Import React Bootstrap components
-import NavbarCreate from "../component/NavBarCreate";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import UserManager from '../component/Manager/UserManager';
+import styles from '../component/Manager/Manager.module.css'
+import PostManager from '../component/Manager/PostManager';
 
 function Manager() {
-  const [posts, setPosts] = useState([]);
+    const [selectedTab, setSelectedTab] = useState('user'); // Mặc định chọn tab 'user'
+    const [user, setUser] = useState({});
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+    useEffect(() => {
+        loadDataProfile();
+    }, []);
 
-  const fetchData = () => {
-    fetch("http://localhost:8080/getPost")
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        setPosts(data);
-      })
-      .catch(error => console.error("Error fetching data:", error));
-  };
+    const loadDataProfile = () => {
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer " + localStorage.getItem("accessToken"));
 
-  const handleDeletePost = (postId) => {
-    var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer " + localStorage.getItem("accessToken"));
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
 
-    var requestOptions = {
-      method: 'DELETE',
-      headers: myHeaders,
-      redirect: 'follow'
+        fetch("http://localhost:8080/Profile/me", requestOptions)
+            .then(response => response.json())
+            .then(result => {
+                setUser(result);
+                // if (!result.roles.includes("ROLE_ADMIN")) {
+                //     navigate('/'); // Chuyển hướng về trang chính hoặc trang khác nếu cần
+                // }
+            })
+            .catch(error => {
+                console.log('error', error)
+                navigate('/')
+            });
+    }
+
+    const handleTabClick = (tab) => {
+        setSelectedTab(tab);
     };
 
-    fetch(`http://localhost:8080/deletePost/${postId}`, requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        // Xóa bài đăng từ state khi xóa thành công
-        const updatedPosts = posts.filter(post => post.postId !== postId);
-        setPosts(updatedPosts);
-      })
-      .catch(error => console.error('Error deleting post:', error));
-  };
+    const handleLogout = () => {
+        localStorage.removeItem("accessToken");
+        navigate('/');
+    };
 
-  return (
-    <div>
-      <NavbarCreate />
-    <div className="container mt-5">
-      <ul className="list-group">
-        {posts.map((post) => (
-          <li key={post.postId} className="list-group-item">
-            <p className="mb-1">Author: {post.author}</p>
-            <p className="mb-1">Title: {post.title}</p>
-            <Button
-              variant="danger"
-              onClick={() => handleDeletePost(post.postId)}
-            >
-              Delete
-            </Button>
-            <hr />
-          </li>
-        ))}
-      </ul>
-    </div>
-    </div>
-  );
+    return (
+        <div className={styles.Container}>
+            <div className={styles.sideBar}>
+
+                <div className={styles.subtitlesideBar}>Quản lý Website</div>
+
+                <button
+                    className={`${styles.funcSidebar} ${selectedTab === 'user' ? styles.selectedButton : ''}`}
+                    onClick={() => handleTabClick('user')}>
+                    <div className={styles.iconUser}></div>
+                    <div className={styles.element}>
+                        <p>Người dùng</p>
+                    </div>
+                </button>
+
+                <button
+                    className={`${styles.funcSidebar} ${selectedTab === 'post' ? styles.selectedButton : ''}`}
+                    onClick={() => handleTabClick('post')}>
+                    <div className={styles.iconPost}></div>
+                    <div className={styles.element}>
+                        <p>Bài viết</p>
+                    </div>
+                </button>
+
+                <button className={styles.funcLogout} onClick={handleLogout}>
+                    <div className={styles.iconPost}></div>
+                    <div className={styles.element}>
+                        <p>Đăng xuất</p>
+                    </div>
+                </button>
+            </div>
+            <div className={styles.contentInner}>{selectedTab === 'user' ? <UserManager /> : <PostManager />}</div>
+        </div>
+    );
 }
 
-export default Manager
+export default Manager;

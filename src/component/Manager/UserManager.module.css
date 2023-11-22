@@ -1,0 +1,59 @@
+/* UserList.module.css */
+
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .header {
+    font-size: 24px;
+    margin-top: 30px;
+    margin-left: 5px;
+  }
+  
+  .userTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .userTable th,
+  .userTable td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+  }
+  
+  .userTable th {
+    background-color: #f2f2f2;
+  }
+  .input{
+    text-align: center;
+    border: none;
+    font-size: 16px;
+    height: 40px;
+  }
+  
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .editButton,
+  .delButton {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    margin: 5px;
+  }
+  
+  .editButton {
+    background-color: #0B6E4F;
+  }
+  
+  .delButton {
+    background-color: #dc3545;
+  }

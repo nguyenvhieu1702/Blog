@@ -41,10 +41,11 @@
     display: flex;
     position: relative;
     align-items: center;
+    width: 500px;
 }
 
 .search_input {
-    width: 350px;
+    width: 500px;
     border: none;
     border-bottom: 2px solid white;
     background-color: transparent;
@@ -64,14 +65,49 @@
 
 .search_results {
     position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
+    overflow-y: auto;
+    max-height: 200px;
+    width: 490px;
+    background-color: #faf8f8;
     border: 1px solid #ccc;
+    color: black;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 1;
     display: flex;
     flex-direction: column;
     min-height: 40px;
+}
+
+.search_results img {
+    width: 75px;
+    height: 50px;
+}
+
+.search_results ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search_results li {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 10px 15px;
+    border-top: 1px solid #ccc;
+    /* Thêm đường gạch ngang */
+}
+
+.search_results li:first-child {
+    border-top: none;
+    /* Loại bỏ đường gạch ngang ở phần tử đầu tiên */
+}
+
+.search_results li img {
+    margin-right: 10px;
+}
+
+.link_style_result {
+    text-decoration: none;
+    color: black;
 }
